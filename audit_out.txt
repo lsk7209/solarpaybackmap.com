@@ -1,0 +1,1 @@
+SEO audit passed: crawl routes, slug handling, metadata guard, AdSense guard, and article requirements are in place.

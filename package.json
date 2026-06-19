@@ -1,0 +1,27 @@
+{
+  "name": "solarpaybackmap.com",
+  "version": "1.0.0",
+  "description": "Solar Payback Map solar payback decision site",
+  "private": true,
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "node scripts/seo_audit.mjs",
+    "smoke": "node scripts/runtime_smoke.mjs",
+    "gsc:sitemap": "python scripts/gsc_submit_sitemap.py",
+    "verify": "node scripts/verify_calc.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "module",
+  "dependencies": {
+    "next": "^16.2.7",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  }
+}
