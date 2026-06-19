@@ -2,9 +2,11 @@ import { getAdsensePublisherId } from "@/lib/adsense";
 
 export const dynamic = "force-dynamic";
 
+const defaultAdsenseClient = "ca-pub-3050601904412736";
+
 export function GET() {
   const publisherId = getAdsensePublisherId(
-    process.env.ADSENSE_CLIENT || process.env.NEXT_PUBLIC_ADSENSE_CLIENT
+    process.env.ADSENSE_CLIENT || process.env.NEXT_PUBLIC_ADSENSE_CLIENT || defaultAdsenseClient
   );
   const body = publisherId
     ? `google.com, ${publisherId}, DIRECT, f08c47fec0942fa0\n`

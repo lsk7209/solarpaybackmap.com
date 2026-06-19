@@ -10,6 +10,7 @@ import { getSiteUrl, SITE_NAME } from "@/lib/site";
 const siteUrl = getSiteUrl();
 const defaultOgImage = `${siteUrl}/opengraph-image`;
 const defaultGaId = "G-85ET570CDB";
+const defaultAdsenseClient = "ca-pub-3050601904412736";
 const clarityProjectId = "x97livixnl";
 
 const newsreader = Newsreader({
@@ -88,7 +89,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   const gaId = process.env.NEXT_PUBLIC_GA4_ID || defaultGaId;
-  const adsenseClient = getAdsenseClientId(process.env.NEXT_PUBLIC_ADSENSE_CLIENT);
+  const adsenseClient = getAdsenseClientId(process.env.NEXT_PUBLIC_ADSENSE_CLIENT || defaultAdsenseClient);
 
   return (
     <html lang="en">

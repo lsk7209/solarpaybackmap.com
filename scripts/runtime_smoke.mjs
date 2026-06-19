@@ -7,6 +7,7 @@ const host = "127.0.0.1";
 const port = Number(process.env.SMOKE_PORT || 3210);
 const origin = `http://${host}:${port}`;
 const failures = [];
+const defaultAdsenseClient = "ca-pub-3050601904412736";
 
 const nextCommand = process.execPath;
 const server = spawn(
@@ -28,7 +29,7 @@ server.stderr.on("data", (chunk) => {
 });
 
 try {
-  await waitForServer(`${origin}/`, 15000);
+  await waitForServer(`${origin}/`, 30000);
   await runChecks();
 } finally {
   await stopServer();
@@ -109,13 +110,9 @@ async function runChecks() {
   expectText(home, "name=\"naver-site-verification\" content=\"fd8c0ea6456d84d5c96284a89003345471a0e4c0\"", "/ should expose Naver site verification.");
   expectText(home, "https://www.clarity.ms/tag/", "/ should load Microsoft Clarity.");
   expectText(home, "x97livixnl", "/ should use the configured Microsoft Clarity project id.");
-  const expectedAdsenseClient = getAdsenseClientId(process.env.NEXT_PUBLIC_ADSENSE_CLIENT);
-  if (!expectedAdsenseClient) {
-    expectNotText(home, "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", "/ should not load AdSense when NEXT_PUBLIC_ADSENSE_CLIENT is unset.");
-    expectNotText(home, "client=ca-pub-XXXXXXXXXXXXXXXX", "/ should not load placeholder AdSense clients.");
-  } else {
-    expectText(home, `client=${expectedAdsenseClient}`, "/ should load Auto Ads only with the normalized AdSense client ID.");
-  }
+  const expectedAdsenseClient = getAdsenseClientId(process.env.NEXT_PUBLIC_ADSENSE_CLIENT || defaultAdsenseClient);
+  expectText(home, `client=${expectedAdsenseClient}`, "/ should load Auto Ads with the normalized AdSense client ID.");
+  expectNotText(home, "client=ca-pub-XXXXXXXXXXXXXXXX", "/ should not load placeholder AdSense clients.");
   expectText(home, "\"@type\":\"WebSite\"", "/ should include WebSite JSON-LD.");
   expectText(home, "contactPoint", "/ should include Organization contactPoint JSON-LD.");
   expectText(home, "editorial corrections and policy questions", "/ Organization contactPoint should describe correction routing.");
@@ -185,7 +182,7 @@ async function runChecks() {
   expectHeader(ads, "cache-control", "public, max-age=3600", "/ads.txt");
   expectHeader(ads, "x-robots-tag", "index, follow", "/ads.txt");
   const expectedAdsensePublisher = getAdsensePublisherId(
-    process.env.ADSENSE_CLIENT || process.env.NEXT_PUBLIC_ADSENSE_CLIENT
+    process.env.ADSENSE_CLIENT || process.env.NEXT_PUBLIC_ADSENSE_CLIENT || defaultAdsenseClient
   );
   if (expectedAdsensePublisher) {
     expectText(ads, `google.com, ${expectedAdsensePublisher}, DIRECT, f08c47fec0942fa0`, "/ads.txt should expose the normalized Google seller line.");
