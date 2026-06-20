@@ -14,7 +14,9 @@ export function Footer() {
             <li><Link href="/methodology">Methodology</Link></li>
             <li><Link href="/feed.xml">RSS feed</Link></li>
             <li><Link href="/feed.json">JSON feed</Link></li>
-            <li><Link href="/legal#privacy">Privacy</Link></li>
+            <li><Link href="/privacy">Privacy</Link></li>
+            <li><Link href="/terms">Terms</Link></li>
+            <li><Link href="/legal#privacy">Legal privacy</Link></li>
             <li><Link href="/legal#advertising">Advertising and cookies</Link></li>
             <li><Link href="/legal#disclaimer">Disclaimer</Link></li>
             <li><Link href="/legal#attribution">Data attribution</Link></li>

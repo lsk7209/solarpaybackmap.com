@@ -68,6 +68,8 @@ export default async function ArticlePage({ params }) {
   const keyTakeaways = getKeyTakeaways(post);
   const relatedPosts = getRelatedPosts(post);
   const nextAction = getNextAction(post);
+  const directAnswers = getDirectAnswers(post);
+  const faqItems = getFaqItems(post);
 
   return (
     <>
@@ -103,7 +105,7 @@ export default async function ArticlePage({ params }) {
           publishingPrinciples: `${siteUrl}/editorial-policy`,
         }}
       />
-      {post.faq ? (
+      {faqItems.length ? (
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -119,7 +121,7 @@ export default async function ArticlePage({ params }) {
               "@type": "WebPage",
               "@id": articleUrl,
             },
-            mainEntity: post.faq.map((item) => ({
+            mainEntity: faqItems.map((item) => ({
               "@type": "Question",
               name: item.question,
               acceptedAnswer: {
@@ -190,7 +192,7 @@ export default async function ArticlePage({ params }) {
             <li>
               <a href="#evidence-snapshot">Evidence snapshot</a>
             </li>
-            {post.faq ? (
+            {faqItems.length ? (
               <li>
                 <a href="#faq">FAQ</a>
               </li>
@@ -217,10 +219,10 @@ export default async function ArticlePage({ params }) {
         >
           <p className="first">{post.excerpt}</p>
 
-          {post.directAnswer ? (
+          {directAnswers.length ? (
             <section className="answer-box" aria-label="Direct answer">
               <h2>Direct answer</h2>
-              {post.directAnswer.map((answer) => (
+              {directAnswers.map((answer) => (
                 <p key={answer}>{answer}</p>
               ))}
             </section>
@@ -292,11 +294,11 @@ export default async function ArticlePage({ params }) {
             </section>
           ))}
 
-          {post.faq ? (
+          {faqItems.length ? (
             <section className="faq-block" id="faq">
               <h2>FAQ</h2>
               <dl>
-                {post.faq.map((item) => (
+                {faqItems.map((item) => (
                   <div className="faq-item" key={item.question}>
                     <dt>{item.question}</dt>
                     <dd>{item.answer}</dd>
@@ -408,14 +410,14 @@ function countArticleWords(post) {
     post.title,
     post.subtitle,
     post.excerpt,
-    ...(post.directAnswer || []),
+    ...getDirectAnswers(post),
     ...(post.sections || []).flatMap((section) => [
       section.heading,
       ...(section.body || []),
       ...(section.bullets || []),
       section.callout,
     ]),
-    ...(post.faq || []).flatMap((item) => [item.question, item.answer]),
+    ...getFaqItems(post).flatMap((item) => [item.question, item.answer]),
   ];
 
   return parts
@@ -423,6 +425,21 @@ function countArticleWords(post) {
     .join(" ")
     .split(/\s+/)
     .filter(Boolean).length;
+}
+
+function getDirectAnswers(post) {
+  if (Array.isArray(post.directAnswer)) return post.directAnswer.filter(Boolean);
+  if (typeof post.directAnswer === "string" && post.directAnswer.trim()) return [post.directAnswer];
+  return [];
+}
+
+function getFaqItems(post) {
+  return (post.faq || [])
+    .map((item) => ({
+      question: item.question || item.q,
+      answer: item.answer || item.a,
+    }))
+    .filter((item) => item.question && item.answer);
 }
 
 function getRelatedPosts(post) {
