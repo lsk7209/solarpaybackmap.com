@@ -72,6 +72,20 @@ export default function EditorialPolicyPage() {
             local rate plan or incentive rule, the article should name that uncertainty instead of
             presenting a single payback number as final.
           </p>
+          <p>
+            The editorial review notes whether a claim is based on production modeling, residential
+            electricity prices, installed-cost research, incentive policy, or a utility tariff. Those
+            categories are kept visible because a homeowner may need to challenge a quote assumption
+            in a different place: production with site and shade details, bill savings with the
+            electric rate plan, net cost with incentive eligibility, and export value with the local
+            interconnection or tariff rule.
+          </p>
+          <ul className="source-list" aria-label="Solar Payback Map editorial source references">
+            <li><a href="https://pvwatts.nrel.gov/" target="_blank" rel="noopener noreferrer external">NREL PVWatts for production-model context</a></li>
+            <li><a href="https://www.eia.gov/electricity/" target="_blank" rel="noopener noreferrer external">U.S. EIA electricity data for rate context</a></li>
+            <li><a href="https://emp.lbl.gov/tracking-the-sun" target="_blank" rel="noopener noreferrer external">LBNL Tracking the Sun for installed-cost context</a></li>
+            <li><a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer external">DSIRE for incentive and policy references</a></li>
+          </ul>
 
           <h2>Review process</h2>
           <ul className="review-process-list" aria-label="Editorial review process requirements">

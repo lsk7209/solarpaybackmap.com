@@ -148,6 +148,24 @@ export default function SolarPaybackMapEditorialPage() {
             an estimate as final advice.
           </p>
 
+          <h2>Primary source trail</h2>
+          <p>
+            Source review starts with publicly inspectable records before any plain-English summary is
+            published. For production assumptions we compare the article claim against NREL PVWatts
+            documentation, for electricity-price context we look to U.S. EIA residential electricity
+            data, for installed-cost context we review LBNL Tracking the Sun, and for incentive or
+            policy statements we point readers toward DSIRE or the relevant public regulator page.
+            This does not make a page a property-specific engineering review, but it lets a homeowner
+            separate a dated public assumption from a sales quote, installer projection, or anecdotal
+            savings claim.
+          </p>
+          <ul className="source-list" aria-label="Solar Payback Map Editorial public source trail">
+            <li><a href="https://pvwatts.nrel.gov/" target="_blank" rel="noopener noreferrer external">NREL PVWatts production modeling reference</a></li>
+            <li><a href="https://www.eia.gov/electricity/" target="_blank" rel="noopener noreferrer external">U.S. EIA electricity data</a></li>
+            <li><a href="https://emp.lbl.gov/tracking-the-sun" target="_blank" rel="noopener noreferrer external">LBNL Tracking the Sun installed-cost research</a></li>
+            <li><a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer external">DSIRE incentive and policy database</a></li>
+          </ul>
+
           <nav className="author-links" aria-label="Solar Payback Map Editorial trust links">
             <Link className="btn btn-primary" href="/editorial-policy">
               Read the editorial policy

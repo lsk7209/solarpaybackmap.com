@@ -57,6 +57,14 @@ export default function MethodologyPage() {
           </dl>
           <h2>Solar payback core equation</h2>
           <p>Annual production is multiplied by the local value of electricity and adjusted for policy. Net installed cost is reduced by modeled incentives. Payback is the net cost divided by expected annual savings.</p>
+          <p>
+            The equation is deliberately presented as a screening model rather than a promise. A
+            homeowner still needs a property-specific quote, a roof and shade review, utility rate
+            confirmation, tax-credit eligibility review, and a check of whether exported energy is
+            credited at retail, avoided cost, or another tariff-defined value. The model keeps those
+            limits visible so a short payback estimate does not hide the assumptions that can change
+            the result.
+          </p>
           <table>
             <caption>Solar payback model input and assumption table</caption>
             <tbody>
@@ -70,6 +78,13 @@ export default function MethodologyPage() {
           </table>
           <h2>Worth-It Score</h2>
           <p>The 0-100 score is a relative indicator that blends payback range, electricity rate, production potential, installed cost, and export-credit policy. It is a comparison tool, not a guarantee for any roof.</p>
+          <p>
+            A higher score means the public inputs look more favorable under the same conservative
+            framework. It does not mean every quote in that place is a good deal. Installer pricing,
+            system size, panel orientation, roof condition, financing cost, utility interconnection
+            rules, and household tax position can move the final answer. Use the score to decide
+            what to verify next, then compare the actual proposal against the sources below.
+          </p>
           <h2>Source policy</h2>
           <ul className="source-grid" aria-label="Public solar data sources">
             {sources.map((source) => (

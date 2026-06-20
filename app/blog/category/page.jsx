@@ -113,6 +113,23 @@ export default function BlogCategoryIndexPage() {
               <dd>latest topic update reviewed in UTC</dd>
             </div>
           </dl>
+          <section className="manifest-section" aria-label="Topic index source trail">
+            <h2>Source trail used across topic hubs</h2>
+            <p className="section-sub">
+              Topic hubs are organized by homeowner decision, but each hub should still lead back to
+              public evidence. Production assumptions are checked against NREL PVWatts context,
+              rate-related claims are compared with U.S. EIA electricity data or utility material,
+              installed-cost context points to LBNL Tracking the Sun, and incentive or policy claims
+              point readers toward DSIRE or public regulator material before a quote is treated as
+              decision-ready.
+            </p>
+            <ul className="source-list" aria-label="Topic hub public source references">
+              <li><a href="https://pvwatts.nrel.gov/" target="_blank" rel="noopener noreferrer external">NREL PVWatts</a></li>
+              <li><a href="https://www.eia.gov/electricity/" target="_blank" rel="noopener noreferrer external">U.S. EIA electricity data</a></li>
+              <li><a href="https://emp.lbl.gov/tracking-the-sun" target="_blank" rel="noopener noreferrer external">LBNL Tracking the Sun</a></li>
+              <li><a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer external">DSIRE</a></li>
+            </ul>
+          </section>
           <ol className="category-index" aria-label="Solar payback topic hubs">
             {categories.map((item) => (
               <li key={item.category}>

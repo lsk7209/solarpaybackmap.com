@@ -131,6 +131,19 @@ export default function ContentManifestPage() {
               Feed metadata also exposes author, editorial-policy, contact, and legal paths for
               crawlers that need source and advertising-disclosure context.
             </p>
+            <p className="section-sub">
+              The manifest is also a source-discovery page. A crawler or reader can start here,
+              confirm that a topic hub has published articles, open the RSS or sitemap feed, and then
+              follow the source trail inside each article. Solar Payback Map keeps this page readable
+              because trust-sensitive solar topics change when utility rates, export-credit policy,
+              installed-cost data, or incentive rules change.
+            </p>
+            <ul className="source-list" aria-label="Content manifest public source references">
+              <li><a href="https://pvwatts.nrel.gov/" target="_blank" rel="noopener noreferrer external">NREL PVWatts production reference</a></li>
+              <li><a href="https://www.eia.gov/electricity/" target="_blank" rel="noopener noreferrer external">U.S. EIA electricity data</a></li>
+              <li><a href="https://emp.lbl.gov/tracking-the-sun" target="_blank" rel="noopener noreferrer external">LBNL Tracking the Sun cost data</a></li>
+              <li><a href="https://www.dsireusa.org/" target="_blank" rel="noopener noreferrer external">DSIRE incentive database</a></li>
+            </ul>
             <dl className="manifest-note" aria-label="Content schedule status">
               <div>
                 <dt>Latest published</dt>
